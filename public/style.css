@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chat Container */
+.chat-box {
+  width: 360px;
+  max-width: 95%;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-box h2 {
+  background: #6c63ff;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  font-size: 18px;
+}
+
+/* Messages */
+#messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #f7f7fb;
+}
+
+/* Message bubbles */
+#messages p {
+  max-width: 75%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Your message */
+#messages p.you {
+  background: #6c63ff;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 2px;
+}
+
+/* Friend message */
+#messages p.friend {
+  background: #e0e0ff;
+  color: #333;
+  margin-right: auto;
+  border-bottom-left-radius: 2px;
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.input-area input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-area button {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.input-area button:hover {
+  background: #554eea;
+}
