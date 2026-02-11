@@ -14,9 +14,10 @@ app.use(express.static("public"));
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-  // Receive message from one user and broadcast to others
-  socket.on("sendMessage", (msg) => {
-    socket.broadcast.emit("receiveMessage", msg);
+  // Receive message object {name, msg} and broadcast to others
+  socket.on("sendMessage", (data) => {
+    // Broadcast to all except sender
+    socket.broadcast.emit("receiveMessage", data);
   });
 
   socket.on("disconnect", () => {

@@ -1,40 +1,48 @@
 // Connect to socket server
 const socket = io();
 
+// User se naam pooch lo
+let username = prompt("Enter your name:") || "Anonymous";
+
 // DOM elements
-const messages = document.getElementById("messages");
-const msgInput = document.getElementById("msg");
+const form = document.getElementById("chat-form");
+const input = document.getElementById("message"); // input box
+const messages = document.getElementById("messages"); // message list
 
 // Send message function
 function sendMessage() {
-  const msg = msgInput.value.trim();
-  if (msg === "") return;
+  const msg = input.value.trim();
+  if (!msg) return;
 
-  // Send to server
-  socket.emit("sendMessage", msg);
+  // Send to server with username
+  socket.emit("sendMessage", { name: username, msg });
 
   // Show your own message
-  const p = document.createElement("p");
-  p.classList.add("you");
-  p.innerText = msg;
-  messages.appendChild(p);
+  const li = document.createElement("li");
+  li.classList.add("you");
+  li.innerHTML = `<strong>${username}:</strong> ${msg}`;
+  messages.appendChild(li);
 
-  msgInput.value = "";
+  // Clear input and auto-scroll
+  input.value = "";
   messages.scrollTop = messages.scrollHeight;
 }
 
 // Receive message from other user
-socket.on("receiveMessage", (msg) => {
-  const p = document.createElement("p");
-  p.classList.add("friend");
-  p.innerText = msg;
-  messages.appendChild(p);
+socket.on("receiveMessage", (data) => {
+  const li = document.createElement("li");
+  li.classList.add("friend");
+  li.innerHTML = `<strong>${data.name}:</strong> ${data.msg}`;
+  messages.appendChild(li);
   messages.scrollTop = messages.scrollHeight;
 });
 
 // Send message on Enter key
-msgInput.addEventListener("keypress", function (e) {
+input.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     sendMessage();
   }
 });
+
+// Optional: focus input on load
+input.focus();

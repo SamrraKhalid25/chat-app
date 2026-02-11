@@ -8,12 +8,12 @@
 
 <div class="chat-box">
   <h2>Live Chat</h2>
-<div id="messages"></div>
+<ul id="messages"></ul>
 
-<div class="input-area">
-  <input id="msg" placeholder="Type a message..." />
-  <button onclick="sendMessage()">Send</button>
-</div>
+<form id="chat-form" onsubmit="return false;">
+  <input id="message" autocomplete="off" placeholder="Type your message..." />
+  <button type="button" onclick="sendMessage()">Send</button>
+</form>
 
 
 <script src="/socket.io/socket.io.js"></script>
